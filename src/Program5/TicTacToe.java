@@ -39,11 +39,12 @@ public class TicTacToe {
 				//player 1 turn
 				System.out.println(player1 + " Please enter a location to move[1-9]: ");
 				int newLocation = stdIn.nextInt();
-				if(newLocation >=0 && newLocation <=9) {
+				if(newLocation >=1 && newLocation <=9) {
 					gridLocation[newLocation-1] = 'X';
 					player1Score = player1Score + newLocation;
 					if(player1Score == 15) {
 						System.out.println(player1 + " WON THE GAME!!");
+						break;
 					}
 					else if(player1Score > 15) {
 						player1Score = player1Score - 16;
