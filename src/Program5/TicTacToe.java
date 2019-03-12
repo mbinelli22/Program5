@@ -41,8 +41,18 @@ public class TicTacToe {
 				int newLocation = stdIn.nextInt();
 				if(newLocation >=0 && newLocation <=9) {
 					gridLocation[newLocation-1] = 'X';
-					int updatedScore = player1Score + newLocation;
-					
+					player1Score = player1Score + newLocation;
+					if(player1Score == 15) {
+						System.out.println(player1 + " WON THE GAME!!");
+					}
+					else if(player1Score > 15) {
+						player1Score = player1Score - 16;
+					}
+					else {
+						displayCurrentBoard();
+						displayCurrentScore();
+						round++;
+					}
 					
 				}
 				
@@ -51,11 +61,16 @@ public class TicTacToe {
 				//player 2 turn
 				System.out.println(player2 + " Please enter a location to move[1-9]: ");
 				char newLocation = stdIn.next().charAt(0);
+				if(newLocation >=0 && newLocation<=9) {
+					gridLocation[newLocation-1] = 'O';
+					int updatedScorePlayer2 = player2Score + newLocation;
+					
+				}
 			}
 		}
 	}
 
-	  public static String currentBoard()
+	  public static String displayCurrentBoard()
 	    {
 	        System.out.println(  "\n\n\t\t" + gridLocation [1] + "   | " +gridLocation [2]+ "  | " +gridLocation [3]);
 	        System.out.println(  " \t\t    |    |   " );
@@ -67,8 +82,13 @@ public class TicTacToe {
 	        System.out.println(  " \t\t    |    |   " );
 	        System.out.println(  " \t\t    |    |   " );
 	        System.out.println(  "\n\n" );
-	        return "currentBoard";
+	        return "displayCurrentBoard";
 	    }
+	  public static String displayCurrentScore() {
+		  System.out.println(player1 + " has a score of: " + player1Score);
+		  System.out.println(player2 + " has a score of: " + player2Score);
+		return "displayCurrentScore";
+	  }
 //	  public static char checkWinnerForPlayer1() {
 //		  char winner = '';
 //		  if(gridLocation[1] == 'X' && gridLocation[2] == 'X' && gridLocation[3] == 'X')
